@@ -1,7 +1,7 @@
 export const timeEvents = [
   {
     date: 1977,
-    description: 'Bruno nascer',
+    description: 'Bruno nasceu',
   },
   {
     date: 1982,
