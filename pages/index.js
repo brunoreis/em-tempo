@@ -4,10 +4,10 @@ import Fork from '../components/Fork'
 import Todo from '../components/Todo'
 
 const Index = ({ stars }) => (
-	<React.Fragment>
-		<Fork stars={stars} />
-		<Todo />
-	</React.Fragment>
+	<div>
+		Em tempo
+	</div>
+
 )
 
 Index.getInitialProps = async () => {

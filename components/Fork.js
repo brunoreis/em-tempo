@@ -22,7 +22,7 @@ const Fork = ({ stars }) => {
 					rel="noreferrer noopener"
 					href="https://github.com/ooade/NextSimpleStarter"
 				>
-					Fork me
+					For all
 				</Fab>
 			</Badge>
 		</div>
