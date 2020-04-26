@@ -43,7 +43,7 @@ class MyDocument extends Document {
         * {
           box-sizing: border-box;
         }
-`}</style>
+	`}</style>
 			</html>
 		)
 	}
