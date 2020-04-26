@@ -24,7 +24,7 @@ class MyDocument extends Document {
 					/>
 					<link
 						rel="apple-touch-icon"
-						href="static/imageIcons/apple-180x180.png"
+						href="static/iconImages/apple-180x180.png"
 					></link>
 				</Head>
 				<body>
