@@ -74,7 +74,7 @@ export default () => {
 						fullWidth
 						value={text}
 						margin="normal"
-						label="What must be done?"
+						label="Let me know..."
 						onChange={handleTextChange}
 						inputProps={{ 'aria-label': 'What must be done?' }}
 					/>
