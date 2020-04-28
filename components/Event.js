@@ -38,7 +38,7 @@ export const Event = ({ timeEvent }) => {
     <div>
       <Wrapper>
         <Date width={dateWidth} hasDescription={!!timeEvent.description}>
-          {timeEvent ? timeEvent.date : ''} -
+          {timeEvent ? timeEvent.date : ''} --
         </Date>
         {!!timeEvent && <Bullet left={dateWidth - 2.5}>•</Bullet>}
         <Description>{timeEvent ? timeEvent.description : ''}</Description>
