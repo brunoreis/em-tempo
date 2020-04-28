@@ -2,6 +2,10 @@ export const timeEvents = [
   {
     date: 1977,
     description: 'Bruno nasceu',
+	},
+	{
+    date: 1978,
+    description: 'algo',
   },
   {
     date: 1982,
