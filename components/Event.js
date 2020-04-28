@@ -12,7 +12,7 @@ const Date = styled.div`
   padding-top: 6px;
   padding-right: 5px;
 
-  color: #${(props) => (props.hasDescription ? '0157b6' : '999')};
+  color: #${(props) => (props.hasDescription ? '0157b6' : 'f00')};
   font-size: 13px;
   height: 100%;
 `
@@ -38,7 +38,7 @@ export const Event = ({ timeEvent }) => {
     <div>
       <Wrapper>
         <Date width={dateWidth} hasDescription={!!timeEvent.description}>
-          {timeEvent ? timeEvent.date : ''}:::.
+          {timeEvent ? timeEvent.date : ''}
         </Date>
         {!!timeEvent && <Bullet left={dateWidth - 2.5}>•</Bullet>}
         <Description>{timeEvent ? timeEvent.description : ''}</Description>
