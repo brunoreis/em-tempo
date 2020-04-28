@@ -4,6 +4,7 @@ module.exports = withOffline({
 	target: process.env.NEXT_TARGET || 'serverless',
 	workboxOpts: {
 		swDest: 'static/service-worker.js',
+		skipWaiting: true,
 		runtimeCaching: [
 			{
 				urlPattern: /[.](png|jpg|ico|css)/,
