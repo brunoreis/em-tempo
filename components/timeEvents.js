@@ -5,7 +5,7 @@ export const timeEvents = [
 	},
 	{
     date: 1978,
-    description: 'algo',
+    description: 'algo 1',
   },
   {
     date: 1982,
