@@ -72,7 +72,7 @@ export const Timeline = () => {
 			))}
 			<Tools>
 				<Button onClick={() => window.location.reload()}>
-					recarregar
+					recarregar ...
 				</Button>
 			</Tools>
     </Wrapper>
