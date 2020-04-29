@@ -8,6 +8,26 @@ const Wrapper = styled.div`
   margin-top: 20px;
 `
 
+const Tools = styled.div`
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	bottom:0;
+	height: 37px;
+	background-color: #fff;
+	width: 100%;
+	border-top: #eee solid 2px;
+	box-shadow: 0px 0 10px rgba(5, 5, 5, 0.2);
+`
+
+const Button = styled.div`
+	height: 25px;
+	cursor: pointer;
+
+`
+
+
 const calculateAllTimeEvents = () => {
   const initialDate = timeEvents[0].date
   const finalDate = timeEvents[timeEvents.length - 1].date
@@ -49,7 +69,12 @@ export const Timeline = () => {
         <span key={timeEvent.date}>
           <Event timeEvent={timeEvent} />
         </span>
-      ))}
+			))}
+			<Tools>
+				<Button onClick={() => window.location.reload()}>
+					recarregar
+				</Button>
+			</Tools>
     </Wrapper>
   )
 }
