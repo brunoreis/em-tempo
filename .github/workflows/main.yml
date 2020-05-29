@@ -1,17 +1,20 @@
-name: Build and deploy 
+
+name: Node.js CI
 on: [push]
 jobs:
-
   build:
-    name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
-
-    - name: deploy docs
-      uses: ./
+    - uses: actions/setup-node@v1
       with:
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        remote_url: https://github.com/appleboy/gh-pages-action.git
+        node-version: '10.x'
+    - run: npm install
+    - run: npm run build --if-present
+    - run: pm2 reload next-js
+      env:
+        CI: true
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
