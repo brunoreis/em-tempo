@@ -25,8 +25,8 @@
 		"start": "next start",
 		"lint": "eslint components",
 		"build": "next build",
-		"build:serverless": "NEXT_TARGET=serverless next build",
-		"export:serverless": "NEXT_TARGET=serverless next export",
+		"build:serverless": "BASE_PATH=/em-tempo NEXT_TARGET=serverless next build",
+		"export:serverless": "BASE_PATH=/em-tempo NEXT_TARGET=serverless next export",
 		"export": "npm run build:server && npm run export:server",
 		"start:static": "serve",
 		"now-build": "next build"
