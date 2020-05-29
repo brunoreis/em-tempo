@@ -9,8 +9,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: pwd
-    - run: ls
+    - run: yarn
     - run: yarn build:serverless
     - run: yarn export:serverless
     - name: Deploy
