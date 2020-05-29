@@ -11,10 +11,10 @@ jobs:
         node-version: '10.x'
     - run: pwd
     - run: ls
-    - run: yarn install
-    - run: yarn build
+    - run: yarn build:serverless
+    - run: yarn export:serverless
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        publish_dir: ./out
