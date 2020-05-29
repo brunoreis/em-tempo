@@ -8,11 +8,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: npm install
-    - run: npm run build --if-present
-    - run: pm2 reload next-js
-      env:
-        CI: true
+    - run: yarn install
+    - run: yarn build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
