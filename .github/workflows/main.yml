@@ -1,26 +1,27 @@
-
 name: CI Deploy GH Pages
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-    - run: yarn
-    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn build:serverless
-    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn export:serverless
-    - name: Deploy 
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: out # The folder the action should deploy.
-        TARGET_FOLDER: ${{ steps.extract_branch.outputs.branch }}
-        SINGLE_COMMIT: true  
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Correctly update package.json
+        run: perl -pi -e 's/github.io\/em-tempo/github.io\/em-tempo\/${{ steps.extract_branch.outputs.branch }}/gi' ./package.json
+      - run: yarn
+      - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next build
+      - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next export
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: out # The folder the action should deploy.
+          TARGET_FOLDER: ${{ steps.extract_branch.outputs.branch }}
+          SINGLE_COMMIT: true

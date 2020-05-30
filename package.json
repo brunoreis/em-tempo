@@ -1,6 +1,6 @@
 {
 	"name": "em-tempo",
-  "homepage": "http://brunoreis.github.io/em-tempo",
+	"homepage": "http://brunoreis.github.io/em-tempo",
 	"private": true,
 	"version": "3.0.0",
 	"repository": {
@@ -25,11 +25,8 @@
 		"start": "next start",
 		"lint": "eslint components",
 		"build": "next build",
-		"build:serverless": "NEXT_TARGET=serverless next build",
-		"export:serverless": "NEXT_TARGET=serverless next export",
-		"export": "npm run build:server && npm run export:server",
-		"start:static": "serve",
-		"now-build": "next build"
+		"export": "next export",
+		"start:static": "serve"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
