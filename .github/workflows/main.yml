@@ -1,5 +1,5 @@
 
-name: CI Deploy GH Page 
+name: CI Deploy GH Pages
 on: [push]
 jobs:
   build:
