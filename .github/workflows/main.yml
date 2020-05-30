@@ -1,5 +1,5 @@
 
-name: Node.js CI 
+name: CI Deploy GH Page 
 on: [push]
 jobs:
   build:
@@ -22,5 +22,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: out # The folder the action should deploy.
-        # TARGET_FOLDER: ${{ steps.extract_branch.outputs.branch }}
+        TARGET_FOLDER: ${{ steps.extract_branch.outputs.branch }}
         SINGLE_COMMIT: true  
