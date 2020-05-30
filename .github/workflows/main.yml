@@ -1,4 +1,4 @@
-name: CI Deploy GH Pages
+name: CI Deploy Next on GH Pages
 on: [push]
 jobs:
   build:
