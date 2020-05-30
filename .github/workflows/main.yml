@@ -45,7 +45,7 @@ jobs:
           SINGLE_COMMIT: true
           id: deploy
       - name: Deploy Success
-        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        if: ${{ steps.extract_branch.outputs.branch != 'master' && env.DEPLOYMENT_STATUS == 'success' }}
         continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
@@ -53,9 +53,8 @@ jobs:
         with:
           msg: "Deploy successfully completed. ✅"
           check_for_duplicate_msg: false  
-        if: ${{ env.DEPLOYMENT_STATUS == 'success' }}
       - name: Deploy Fail
-        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        if: ${{ steps.extract_branch.outputs.branch != 'master' && env.DEPLOYMENT_STATUS == 'failed' }}
         continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
@@ -63,9 +62,8 @@ jobs:
         with:
           msg: "Deploy failed. ❌"
           check_for_duplicate_msg: false
-        if: ${{ env.DEPLOYMENT_STATUS == 'failed' }}
       - name: Deploy Skipped
-        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        if: ${{ steps.extract_branch.outputs.branch != 'master' && env.DEPLOYMENT_STATUS == 'skipped' }}
         continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
@@ -73,4 +71,3 @@ jobs:
         with:
           msg: "Deploy skipped. 🦘"
           check_for_duplicate_msg: false
-        if: ${{ env.DEPLOYMENT_STATUS == 'skipped' }}
