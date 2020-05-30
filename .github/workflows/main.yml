@@ -12,11 +12,15 @@ jobs:
     - run: yarn
     - run: yarn build:serverless
     - run: yarn export:serverless
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
     - name: Deploy 
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: out # The folder the action should deploy.
-        TARGET_FOLDER: $GITHUB_REF 
+        TARGET_FOLDER: ${{ steps.extract_branch.outputs.branch }}
         SINGLE_COMMIT: true  
