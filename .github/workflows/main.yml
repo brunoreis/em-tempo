@@ -25,9 +25,6 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-      - name: package_version 
-        run: console.log(require('./package.json');
-console.log(pjson.version);
       - name: Correctly update package.json
         run: perl -pi -e 's/github.io\/em-tempo/github.io\/em-tempo\/${{ steps.extract_branch.outputs.branch }}/gi' ./package.json
       - name: cat package.json
