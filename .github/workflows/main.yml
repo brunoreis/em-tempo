@@ -31,8 +31,8 @@ jobs:
       - name: cat package.json
         run: cat ./package.json
       - run: yarn
-      - run: BASE_PATH=/{{env.repo}}/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next build
-      - run: BASE_PATH=/{{env.repo}}/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next export
+      - run: BASE_PATH=/${{env.repo}}/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next build
+      - run: BASE_PATH=/${{env.repo}}/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next export
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
