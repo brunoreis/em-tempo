@@ -1,14 +1,12 @@
 name: CI Deploy Next on GH Pages
 on: [push]
+env:
+  user: brunoreis
+  repo: em-tempo
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set env vars
-        run: echo user $user and repo $repo
-        env:
-          user: brunoreis
-          repo: em-tempo
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
