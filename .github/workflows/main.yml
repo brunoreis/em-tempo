@@ -35,10 +35,27 @@ jobs:
           TARGET_FOLDER: ${{ steps.extract_branch.outputs.branch }}
           SINGLE_COMMIT: true
           id: deploy
-      - name: comment PR
+      - name: Deploy Success
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Deploy completed: ${{ env.DEPLOYMENT_STATUS }}"
+          msg: "Deploy successfully completed. ✅"
           check_for_duplicate_msg: false  
+        if: ${{ env.DEPLOYMENT_STATUS == 'success' }}
+      - name: Deploy Fail
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Deploy failed. ❌"
+          check_for_duplicate_msg: false  
+        if: ${{ env.DEPLOYMENT_STATUS == 'success' }}
+      - name: PR Skipped
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Deploy skipped. ⚪️"
+          check_for_duplicate_msg: false  
+        if: ${{ env.DEPLOYMENT_STATUS == 'success' }}
