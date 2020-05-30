@@ -10,7 +10,7 @@ jobs:
           user: brunoreis
           repo: em-tempo
       - name: show
-        run: echo "user ${env.user} repo ${{ env.repo }}"
+        run: echo "user ${{env.user}} repo ${{ env.repo }}"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
