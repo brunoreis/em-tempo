@@ -18,5 +18,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: out # The folder the action should deploy.
-        TARGET_FOLDER: ${GITHUB_REF##*/}
+        TARGET_FOLDER: ${GITHUB_REF}
         SINGLE_COMMIT: true  
