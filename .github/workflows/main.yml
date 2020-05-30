@@ -9,6 +9,10 @@ jobs:
         env:
           user: brunoreis
           repo: em-tempo
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - name: show
         run: echo "user ${{env.user}} repo ${{ env.repo }}"
       - uses: actions/checkout@v2
@@ -16,16 +20,14 @@ jobs:
         with:
           node-version: '10.x'
       - name: comment PR
+        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           msg: "Starting deploy 🚀"
           check_for_duplicate_msg: false
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
       - name: Correctly update package.json
         run: perl -pi -e 's/github.io\/em-tempo/github.io\/em-tempo\/${{ steps.extract_branch.outputs.branch }}/gi' ./package.json
       - name: cat package.json
@@ -43,6 +45,8 @@ jobs:
           SINGLE_COMMIT: true
           id: deploy
       - name: Deploy Success
+        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,6 +55,8 @@ jobs:
           check_for_duplicate_msg: false  
         if: ${{ env.DEPLOYMENT_STATUS == 'success' }}
       - name: Deploy Fail
+        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +64,9 @@ jobs:
           msg: "Deploy failed. ❌"
           check_for_duplicate_msg: false
         if: ${{ env.DEPLOYMENT_STATUS == 'failed' }}
-      - name: PR Skipped
+      - name: Deploy Skipped
+        if: ${{ steps.extract_branch.outputs.branch != 'master' }}
+        continue-on-error: true
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
