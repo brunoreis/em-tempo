@@ -4,6 +4,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set env vars
+        env:
+          user: brunoreis
+          repo: em-tempo
+      - name: show
+        run: echo "user ${env.user} repo ${{ env.repo }}"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -19,6 +25,9 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
+      - name: package_version 
+        run: console.log(require('./package.json');
+console.log(pjson.version);
       - name: Correctly update package.json
         run: perl -pi -e 's/github.io\/em-tempo/github.io\/em-tempo\/${{ steps.extract_branch.outputs.branch }}/gi' ./package.json
       - name: cat package.json
