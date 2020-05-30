@@ -32,13 +32,5 @@ export const ToolBar = () => (
 		>
 			<RefreshImage src={require('./refresh.png')} alt="refresh" />
 		</Button>
-		<Button
-			onClick={() => {
-				console.log('Alo Maria')
-				window.location.reload()
-			}}
-		>
-			<RefreshImage src={require('./refresh.png')} alt="refresh" />
-		</Button>
 	</Tools>
 )
