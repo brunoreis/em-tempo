@@ -4,7 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set user $user and repo $repo
+      - name: Set env vars
+        run: echo user $user and repo $repo
         env:
           user: brunoreis
           repo: em-tempo
