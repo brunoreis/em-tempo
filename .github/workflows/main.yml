@@ -56,6 +56,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Deploy skipped. ⚪️"
+          msg: "Deploy skipped. 🦘"
           check_for_duplicate_msg: false
         if: ${{ env.DEPLOYMENT_STATUS == 'skipped' }}
