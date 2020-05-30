@@ -49,7 +49,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Deploy successfully completed. ✅"
+          msg: "Deploy successfully completed. ✅ https://${{env.user}}.github.io/${{env.repo}}/${{ steps.extract_branch.outputs.branch }}/"
           check_for_duplicate_msg: false  
       - name: Deploy Fail
         if: ${{ steps.extract_branch.outputs.branch != 'master' && env.DEPLOYMENT_STATUS == 'failed' }}
