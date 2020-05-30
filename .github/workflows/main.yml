@@ -40,5 +40,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Deploy completed: ${{ DEPLOYMENT_STATUS }}"
+          msg: "Deploy completed: ${{ env.DEPLOYMENT_STATUS }}"
           check_for_duplicate_msg: false  
