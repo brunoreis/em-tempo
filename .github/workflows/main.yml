@@ -14,8 +14,8 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
     - run: yarn
-    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn build:serverless
-    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn export:serverless
+    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next build
+    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next export
     - name: Deploy 
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
