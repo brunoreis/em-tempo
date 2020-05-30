@@ -14,6 +14,8 @@ jobs:
         id: extract_branch
       - name: Correctly update package.json
         run: perl -pi -e 's/github.io\/em-tempo/github.io\/em-tempo\/${{ steps.extract_branch.outputs.branch }}/gi' ./package.json
+      - name: cat package.json
+        run: cat ./package.json
       - run: yarn
       - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next build
       - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} NEXT_TARGET=serverless ./node_modules/next/dist/bin/next export
