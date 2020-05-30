@@ -9,13 +9,13 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: yarn
-    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn build:serverless
-    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn export:serverless
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
+    - run: yarn
+    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn build:serverless
+    - run: BASE_PATH=/em-tempo/${{ steps.extract_branch.outputs.branch }} yarn export:serverless
     - name: Deploy 
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
